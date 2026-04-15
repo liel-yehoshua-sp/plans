@@ -1,0 +1,27 @@
+{
+  "name": "@plan/cli",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "plan": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "prebuild": "npm run build -w @plan/store && npm run build -w @plan/viewer",
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "test": "vitest run",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@plan/store": "*",
+    "@plan/viewer": "*",
+    "chalk": "^5.4.0",
+    "commander": "^13.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}

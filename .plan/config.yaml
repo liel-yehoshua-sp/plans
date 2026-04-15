@@ -1,0 +1,6 @@
+directory: .plan
+idPrefix:
+  epic: EPIC
+  story: STORY
+  task: TASK
+branchPattern: "{epicId}/{storyId}-{slug}"
