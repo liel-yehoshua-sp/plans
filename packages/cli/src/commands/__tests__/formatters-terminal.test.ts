@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { Epic } from '@plan/store';
+import type { Epic } from '@plans/store';
 import {
   error,
   formatEpic,

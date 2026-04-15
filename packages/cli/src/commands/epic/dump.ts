@@ -1,5 +1,5 @@
 import type { Command } from 'commander';
-import { PlanWorkspace } from '@plan/store';
+import { PlanWorkspace } from '@plans/store';
 import { renderEpicDump } from '../../formatters/epic-dump.js';
 import { runPlanAction } from '../../lib/cli-action.js';
 

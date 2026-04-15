@@ -1,5 +1,5 @@
 {
-  "name": "@plan/cli",
+  "name": "@plans/cli",
   "version": "1.0.0",
   "type": "module",
   "bin": {
@@ -7,15 +7,15 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "prebuild": "npm run build -w @plan/store && npm run build -w @plan/viewer",
+    "prebuild": "npm run build -w @plans/store && npm run build -w @plans/viewer",
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
     "test": "vitest run",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@plan/store": "*",
-    "@plan/viewer": "*",
+    "@plans/store": "*",
+    "@plans/viewer": "*",
     "chalk": "^5.4.0",
     "commander": "^13.0.0"
   },

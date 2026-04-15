@@ -1,7 +1,7 @@
 import type { Command } from 'commander';
 import { exec } from 'node:child_process';
 import { platform } from 'node:os';
-import { startViewer, DEFAULT_PORT } from '@plan/viewer';
+import { startViewer, DEFAULT_PORT } from '@plans/viewer';
 import chalk from 'chalk';
 
 function openBrowser(url: string): void {

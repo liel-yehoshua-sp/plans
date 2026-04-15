@@ -1,11 +1,11 @@
-# plan
+# plans
 
-File-backed **`.plan/`** portfolios: **`@plan/store`**, **`plan`** CLI, and a local read-only **viewer**.
+File-backed **`.plan/`** portfolios: **`@plans/store`**, **`plan`** CLI, and a local read-only **viewer**.
 
 ## Setup
 
 ```bash
-cd ~/dev/slpt/plan
+cd ~/dev/slpt/plans
 npm install
 npm run build
 ```

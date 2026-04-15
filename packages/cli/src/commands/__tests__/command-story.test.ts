@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 import { describe, expect, it, vi, afterEach } from 'vitest';
-import { PlanWorkspace } from '@plan/store';
+import { PlanWorkspace } from '@plans/store';
 import { register as registerStory } from '../story/register.js';
 import { createTestProgram, exitNoop, exitThrows } from './fixtures/cli-test-harness.js';
 import { makeProgress, makeStory, makeTask } from './fixtures/plan-entity-factories.js';

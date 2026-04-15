@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import type { Epic, Story, Task, Progress } from '@plan/store';
+import type { Epic, Story, Task, Progress } from '@plans/store';
 
 const PROGRESS_BAR_WIDTH = 20;
 

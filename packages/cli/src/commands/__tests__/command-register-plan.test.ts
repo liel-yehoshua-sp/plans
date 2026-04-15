@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, afterEach } from 'vitest';
-import { PlanWorkspace } from '@plan/store';
+import { PlanWorkspace } from '@plans/store';
 import { registerPlanCli } from '../register.js';
 import { createTestProgram, exitNoop, exitThrows } from './fixtures/cli-test-harness.js';
 

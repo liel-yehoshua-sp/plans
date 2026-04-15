@@ -1,4 +1,4 @@
-import type { Epic, Progress, Story, Task } from '@plan/store';
+import type { Epic, Progress, Story, Task } from '@plans/store';
 
 export function makeEpic(overrides: Partial<Epic> = {}): Epic {
   return {

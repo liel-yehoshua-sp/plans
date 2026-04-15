@@ -1,7 +1,7 @@
 import * as path from 'node:path';
 import type { Command } from 'commander';
 import chalk from 'chalk';
-import { loadConfig, runLegacyLayoutMigration } from '@plan/store';
+import { loadConfig, runLegacyLayoutMigration } from '@plans/store';
 
 export function register(program: Command): void {
   const migrate = program.command('migrate').description('Migrate an older .plan/ on-disk layout');

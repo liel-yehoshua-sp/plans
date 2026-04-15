@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { PlanWorkspace } from '@plan/store';
+import type { PlanWorkspace } from '@plans/store';
 import { renderEpicDump } from '../epic-dump.js';
 import { makeEpic, makeStory, makeTask } from '../../commands/__tests__/fixtures/plan-entity-factories.js';
 

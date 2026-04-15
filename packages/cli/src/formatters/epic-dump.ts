@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import type { PlanWorkspace } from '@plan/store';
+import type { PlanWorkspace } from '@plans/store';
 
 const RULE_MAX_WIDTH = 72;
 

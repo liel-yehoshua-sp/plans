@@ -1,5 +1,5 @@
 import type { Command } from 'commander';
-import { PlanWorkspace, type TaskStatus } from '@plan/store';
+import { PlanWorkspace, type TaskStatus } from '@plans/store';
 import { success } from '../../formatters/terminal.js';
 import { runPlanAction } from '../../lib/cli-action.js';
 import { parseTaskPath } from './parse-task-path.js';

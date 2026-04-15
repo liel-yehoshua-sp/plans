@@ -1,5 +1,5 @@
 import type { Command } from 'commander';
-import { PlanWorkspace, type StoryStatus } from '@plan/store';
+import { PlanWorkspace, type StoryStatus } from '@plans/store';
 import { success } from '../../formatters/terminal.js';
 import { runPlanAction } from '../../lib/cli-action.js';
 

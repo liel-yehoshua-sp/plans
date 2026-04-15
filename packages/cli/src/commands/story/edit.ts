@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 import type { Command } from 'commander';
-import { PlanWorkspace } from '@plan/store';
+import { PlanWorkspace } from '@plans/store';
 import { success } from '../../formatters/terminal.js';
 import { runPlanAction } from '../../lib/cli-action.js';
 

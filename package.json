@@ -1,5 +1,5 @@
 {
-  "name": "plan",
+  "name": "plans",
   "private": true,
   "description": "File-backed .plan/ portfolios — store, CLI, local viewer",
   "workspaces": ["packages/*"],
@@ -7,7 +7,7 @@
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "plan": "node ./packages/cli/dist/index.js",
-    "plan:viewer": "npm run dev -w @plan/viewer"
+    "plan:viewer": "npm run dev -w @plans/viewer"
   },
   "engines": {
     "node": ">=20.0.0"

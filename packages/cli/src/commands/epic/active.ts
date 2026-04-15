@@ -1,5 +1,5 @@
 import type { Command } from 'commander';
-import { PlanWorkspace } from '@plan/store';
+import { PlanWorkspace } from '@plans/store';
 import { runPlanAction } from '../../lib/cli-action.js';
 
 export function registerActive(epic: Command): void {

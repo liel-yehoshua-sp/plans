@@ -1,5 +1,5 @@
 import type { Command } from 'commander';
-import { PlanWorkspace, type EpicStatus } from '@plan/store';
+import { PlanWorkspace, type EpicStatus } from '@plans/store';
 import { formatEpic } from '../../formatters/terminal.js';
 import { runPlanAction } from '../../lib/cli-action.js';
 
