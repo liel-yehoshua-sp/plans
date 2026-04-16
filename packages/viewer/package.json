@@ -1,5 +1,5 @@
 {
-  "name": "@plan/viewer",
+  "name": "@plans/viewer",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -9,13 +9,13 @@
     ".": "./dist/server.js"
   },
   "scripts": {
-    "prebuild": "npm run build -w @plan/store",
+    "prebuild": "npm run build -w @plans/store",
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts"
   },
   "dependencies": {
-    "@plan/store": "*",
+    "@plans/store": "*",
     "express": "^4.19.0"
   },
   "devDependencies": {

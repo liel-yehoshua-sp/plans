@@ -7,7 +7,7 @@ import { PlanWorkspace } from '../workspace.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TMP_ROOT = path.resolve(__dirname, '../../../../.tmp-test');
 
-describe('@plan/store', () => {
+describe('@plans/store', () => {
   let tmpDir: string;
 
   beforeEach(() => {
@@ -83,5 +83,40 @@ Body
 
     const reloaded = PlanWorkspace.load(tmpDir);
     expect(() => reloaded.getEpic('to-delete')).toThrow();
+  });
+
+  it('lists stories from the epic stories/ folder even when epicId in frontmatter mismatches', () => {
+    PlanWorkspace.init(tmpDir);
+    const epicDir = path.join(tmpDir, '.plan', 'epics', 'e1-slug');
+    fs.mkdirSync(path.join(epicDir, 'stories'), { recursive: true });
+    const epic = `---
+id: e1
+slug: e1-slug
+title: E
+status: draft
+executionOrder: 1
+createdAt: 2020-01-01T00:00:00.000Z
+updatedAt: 2020-01-01T00:00:00.000Z
+---
+
+`;
+    fs.writeFileSync(path.join(epicDir, 'EPIC.md'), epic, 'utf-8');
+    const story = `---
+id: STORY-999
+epicId: some-other-epic
+title: Wrong epicId in YAML
+status: draft
+branch: b
+createdAt: 2020-01-01T00:00:00.000Z
+updatedAt: 2020-01-01T00:00:00.000Z
+tasks: []
+---
+
+# Body
+`;
+    fs.writeFileSync(path.join(epicDir, 'stories', 's.md'), story, 'utf-8');
+    const loaded = PlanWorkspace.load(tmpDir);
+    expect(loaded.listStories({ epicId: 'e1' })).toHaveLength(1);
+    expect(loaded.listStories({ epicId: 'e1' })[0].id).toBe('STORY-999');
   });
 });

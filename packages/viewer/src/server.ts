@@ -1,7 +1,7 @@
 import express, { type Express } from 'express';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { PlanWorkspace, WorkspaceNotFoundError } from '@plan/store';
+import { PlanWorkspace, WorkspaceNotFoundError } from '@plans/store';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

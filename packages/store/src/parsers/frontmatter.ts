@@ -18,7 +18,7 @@ export function serialize(data: Record<string, unknown>, body: string): string {
   );
   // Use `yaml` (not gray-matter's js-yaml dump): js-yaml breaks nested arrays/maps
   // (e.g. story `tasks[].steps[]`), producing invalid YAML and duplicate keys on read.
-  const yaml = YAML.stringify(clean, { indent: 2, lineWidth: 0 });
+  const yaml = YAML.stringify(clean, { indent: 2, lineWidth: 0 }).replace(/^\n+/, '');
   const yamlBlock = yaml.endsWith('\n') ? yaml : `${yaml}\n`;
   return `---\n${yamlBlock}---${body}`;
 }

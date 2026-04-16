@@ -121,6 +121,15 @@ export class PlanWorkspace {
     }
   }
 
+  /** Skip files with invalid frontmatter so one bad story does not break the workspace. */
+  private tryReadStory(filePath: string): Story | null {
+    try {
+      return readStory(filePath);
+    } catch {
+      return null;
+    }
+  }
+
   private loadEpicsFromDisk(filter?: EpicFilter): Epic[] {
     const out: Epic[] = [];
     for (const p of this.eachEpicFilePath()) {
@@ -141,7 +150,8 @@ export class PlanWorkspace {
     const pattern = new RegExp(`^${prefix}-(\\d+)$`, 'i');
     let max = 0;
     for (const p of this.eachStoryFilePath()) {
-      const story = readStory(p);
+      const story = this.tryReadStory(p);
+      if (!story) continue;
       const m = story.id.match(pattern);
       if (m) max = Math.max(max, parseInt(m[1], 10));
     }
@@ -150,8 +160,8 @@ export class PlanWorkspace {
 
   private findStoryPathById(storyId: string): string | null {
     for (const p of this.eachStoryFilePath()) {
-      const s = readStory(p);
-      if (s.id === storyId) return p;
+      const s = this.tryReadStory(p);
+      if (s && s.id === storyId) return p;
     }
     return null;
   }
@@ -311,12 +321,39 @@ export class PlanWorkspace {
   }
 
   listStories(filter?: StoryFilter): Story[] {
+    const matchesStoryFilters = (s: Story): boolean => {
+      if (filter?.status && s.status !== filter.status) return false;
+      if (filter?.assignee && s.assignee !== filter.assignee) return false;
+      return true;
+    };
+
+    // When scoped to an epic, use on-disk layout (epics/<slug>/stories/) as SSOT so
+    // stories still appear if frontmatter epicId drifts from epic.id.
+    if (filter?.epicId) {
+      let epic: Epic;
+      try {
+        epic = this.getEpic(filter.epicId);
+      } catch {
+        return [];
+      }
+      const dir = this.storiesDirForEpicSlug(epic.slug);
+      if (!fs.existsSync(dir)) return [];
+      const out: Story[] = [];
+      for (const name of [...fs.readdirSync(dir)].sort()) {
+        if (!name.endsWith('.md')) continue;
+        const s = this.tryReadStory(path.join(dir, name));
+        if (!s) continue;
+        if (!matchesStoryFilters(s)) continue;
+        out.push(s);
+      }
+      return out;
+    }
+
     const out: Story[] = [];
     for (const p of this.eachStoryFilePath()) {
-      const s = readStory(p);
-      if (filter?.epicId && s.epicId !== filter.epicId) continue;
-      if (filter?.status && s.status !== filter.status) continue;
-      if (filter?.assignee && s.assignee !== filter.assignee) continue;
+      const s = this.tryReadStory(p);
+      if (!s) continue;
+      if (!matchesStoryFilters(s)) continue;
       out.push(s);
     }
     return out;
@@ -387,7 +424,9 @@ export class PlanWorkspace {
     }
     const all: Task[] = [];
     for (const p of this.eachStoryFilePath()) {
-      all.push(...collectFromStory(readStory(p)));
+      const s = this.tryReadStory(p);
+      if (!s) continue;
+      all.push(...collectFromStory(s));
     }
     return all.sort((a, b) => a.storyId.localeCompare(b.storyId) || a.order - b.order);
   }

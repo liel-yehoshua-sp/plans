@@ -1,5 +1,5 @@
 {
-  "name": "@plan/store",
+  "name": "@plans/store",
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/store.js",
@@ -12,17 +12,18 @@
     }
   },
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc",
     "test": "vitest run",
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@types/node": "^20.14.0",
     "gray-matter": "^4.0.3",
+    "typescript": "^5.4.0",
     "yaml": "^2.6.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.0",
-    "typescript": "^5.4.0",
     "vitest": "^1.6.0"
   }
 }
