@@ -3,3 +3,6 @@ dist/
 .tmp-test/
 *.log
 .DS_Store
+
+# Cursor hook inspector output (full stdin payloads)
+.cursor/hooks/logs/
